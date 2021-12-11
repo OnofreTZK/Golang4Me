@@ -9,20 +9,21 @@ func fact(n int) (int, error) {
 	var aux func(int, int) (int, error)
 
 	aux = func(prev, total int) (int, error) {
+		fmt.Printf("Total: %d | n: %d\n", total, prev)
 		switch {
-		case n == 1:
+		case prev == 1:
 			return total, fmt.Errorf("err\n")
-		case total == 0:
-			return aux(prev-1, prev*(n-1))
-		default:
+		case prev == n:
 			return aux(prev-1, prev*total)
+		default:
+			return aux(prev-1, (prev-1)*total)
 		}
 	}
 
-	return aux(n, 0)
+	return aux(n, n-1)
 }
 
 func main() {
-	val, _ := fact(5)
+	val, _ := fact(10)
 	fmt.Println(val)
 }
