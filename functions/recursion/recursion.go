@@ -4,19 +4,22 @@ import (
 	"fmt"
 )
 
-func fact(n int) (int, error) {
+func fact(n uint) (uint, error) {
 
-	var aux func(int, int) (int, error)
+	// Assigning the closure
+	var aux func(uint, uint) (uint, error)
 
-	aux = func(prev, total int) (int, error) {
-		fmt.Printf("Total: %d | n: %d\n", total, prev)
+	aux = func(num, total uint) (uint, error) {
+
 		switch {
-		case prev == 1:
-			return total, fmt.Errorf("err\n")
-		case prev == n:
-			return aux(prev-1, prev*total)
+		case num == 0:
+			return 1, nil
+		case num == 1:
+			return total, nil
+		case num == n:
+			return aux(num-1, num*total)
 		default:
-			return aux(prev-1, (prev-1)*total)
+			return aux(num-1, (num-1)*total)
 		}
 	}
 
@@ -26,4 +29,6 @@ func fact(n int) (int, error) {
 func main() {
 	val, _ := fact(10)
 	fmt.Println(val)
+	val2, _ := fact(0)
+	fmt.Println(val2)
 }
