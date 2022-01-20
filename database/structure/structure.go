@@ -18,7 +18,7 @@ func exec(db *sql.DB, sql string) sql.Result {
 
 func main() {
 
-	db, err := sql.Open("mysql", "root:MetamaxT08@tcp(localhost)/")
+	db, err := sql.Open("mysql", "root:MetamaxT08@/")
 	if err != nil {
 		panic(err)
 	}
